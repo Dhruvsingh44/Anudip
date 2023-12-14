@@ -1,0 +1,104 @@
+// Custom exception for invalid country
+class CountryNotValidException extends Exception {
+    public CountryNotValidException(String message) {
+        super(message);
+    }
+}
+
+// Custom exception for invalid employee name
+class EmployeeNameInvalidException extends Exception {
+    public EmployeeNameInvalidException(String message) {
+        super(message);
+    }
+}
+
+// Custom exception for not eligible for tax
+class TaxNotEligibleException extends Exception {
+    public TaxNotEligibleException(String message) {
+        super(message);
+    }
+}
+
+// TaxCalculator class
+class TaxCalculator {
+    public static double calculateTax(String empName, boolean isIndian, double empSal)
+            throws CountryNotValidException, EmployeeNameInvalidException, TaxNotEligibleException {
+
+        if (!isIndian) {
+            throw new CountryNotValidException("The employee should be an Indian citizen for calculating tax");
+        }
+
+        if (empName == null || empName.isEmpty()) {
+            throw new EmployeeNameInvalidException("The employee name cannot be empty");
+        }
+
+        double taxAmount;
+
+        if (empSal > 100000) {
+            taxAmount = empSal * 8 / 100;
+        } else if (empSal >= 50000 && empSal <= 100000) {
+            taxAmount = empSal * 6 / 100;
+        } else if (empSal >= 30000 && empSal < 50000) {
+            taxAmount = empSal * 5 / 100;
+        } else if (empSal >= 10000 && empSal < 30000) {
+            taxAmount = empSal * 4 / 100;
+        } else {
+            throw new TaxNotEligibleException("The employee does not need to pay tax");
+        }
+
+        return taxAmount;
+    }
+}
+
+// CalculatorSimulator class
+public class CalculatorSimulator {
+    public static void main(String[] args) {
+        // Test Case 1
+        try {
+            double tax1 = TaxCalculator.calculateTax("Ron", false, 34000);
+            System.out.println("Tax amount is: " + tax1);
+        } catch (CountryNotValidException e) {
+            System.out.println("Country not valid: " + e.getMessage());
+        } catch (EmployeeNameInvalidException e) {
+            System.out.println("Employee name not valid: " + e.getMessage());
+        } catch (TaxNotEligibleException e) {
+            System.out.println("Not eligible for Tax calculation: " + e.getMessage());
+        }
+
+        // Test Case 2
+        try {
+            double tax2 = TaxCalculator.calculateTax("Tim", true, 1000);
+            System.out.println("Tax amount is: " + tax2);
+        } catch (CountryNotValidException e) {
+            System.out.println("Country not valid: " + e.getMessage());
+        } catch (EmployeeNameInvalidException e) {
+            System.out.println("Employee name not valid: " + e.getMessage());
+        } catch (TaxNotEligibleException e) {
+            System.out.println("Not eligible for Tax calculation: " + e.getMessage());
+        }
+
+        // Test Case 3
+        try {
+            double tax3 = TaxCalculator.calculateTax("Jack", true, 55000);
+            System.out.println("Tax amount is: " + tax3);
+        } catch (CountryNotValidException e) {
+            System.out.println("Country not valid: " + e.getMessage());
+        } catch (EmployeeNameInvalidException e) {
+            System.out.println("Employee name not valid: " + e.getMessage());
+        } catch (TaxNotEligibleException e) {
+            System.out.println("Not eligible for Tax calculation: " + e.getMessage());
+        }
+
+        // Test Case 4
+        try {
+            double tax4 = TaxCalculator.calculateTax("", true, 30000);
+            System.out.println("Tax amount is: " + tax4);
+        } catch (CountryNotValidException e) {
+            System.out.println("Country not valid: " + e.getMessage());
+        } catch (EmployeeNameInvalidException e) {
+            System.out.println("Employee name not valid: " + e.getMessage());
+        } catch (TaxNotEligibleException e) {
+            System.out.println("Not eligible for Tax calculation: " + e.getMessage());
+        }
+    }
+}

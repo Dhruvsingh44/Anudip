@@ -1,0 +1,34 @@
+public class ThreadExample {
+    public static void main(String[] args) {
+        int[] arr = {1, 20, 50, 15, 30};
+
+        // Create two threads
+        Thread averageThread = new Thread(() -> {
+            double average = findAverage(arr);
+            System.out.printf("The Average of the first 10 numbers is : %.2f\n", average);
+        });
+
+        Thread squareThread = new Thread(() -> {
+            for (int num : arr) {
+                System.out.println("Square of " + num + " : " + (num * num));
+            }
+        });
+
+        // Start the threads
+        averageThread.start();
+        try {
+            averageThread.join(); // Wait for averageThread to finish before starting squareThread
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        squareThread.start();
+    }
+
+    private static double findAverage(int[] arr) {
+        int sum = 0;
+        for (int num : arr) {
+            sum += num;
+        }
+        return (double) sum / arr.length;
+    }
+}

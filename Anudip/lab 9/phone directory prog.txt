@@ -1,0 +1,43 @@
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class PhoneDirectory {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        HashMap<String, String> phoneBook = new HashMap<>();
+
+        int choice;
+        do {
+            System.out.println("\n1. Find Number\n2. Add Number\n3. Exit");
+            System.out.print("Choose An Option : ");
+            choice = scanner.nextInt();
+            scanner.nextLine(); // consume the newline character
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter Name to find number : ");
+                    String nameToFind = scanner.nextLine();
+                    String phoneNumber = phoneBook.get(nameToFind);
+                    if (phoneNumber != null) {
+                        System.out.println("Phone Number of " + nameToFind + " : " + phoneNumber);
+                    } else {
+                        System.out.println("Name not found in the Phone Book.");
+                    }
+                    break;
+                case 2:
+                    System.out.print("Enter Name : ");
+                    String nameToAdd = scanner.nextLine();
+                    System.out.print("Enter Phone Number : ");
+                    String phoneToAdd = scanner.nextLine();
+                    phoneBook.put(nameToAdd, phoneToAdd);
+                    System.out.println("Successfully Added " + nameToAdd + " To The Phone Book.");
+                    break;
+                case 3:
+                    System.out.println("Successfully Exit from Application");
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please enter 1, 2, or 3.");
+            }
+        } while (choice != 3);
+    }
+}

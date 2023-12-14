@@ -1,0 +1,17 @@
+import java.util.HashMap;
+
+public class HashMapEmptyExample {
+    public static void main(String[] args) {
+        // Create an empty HashMap
+        HashMap<String, Integer> emptyHashMap = new HashMap<>();
+
+        // Check if the HashMap is empty
+        System.out.println("Is the HashMap empty? : " + emptyHashMap.isEmpty());
+
+        // Clear the HashMap
+        emptyHashMap.clear();
+
+        // Check if the HashMap is empty after clearing
+        System.out.println("Is the HashMap empty after clearing? : " + emptyHashMap.isEmpty());
+    }
+}

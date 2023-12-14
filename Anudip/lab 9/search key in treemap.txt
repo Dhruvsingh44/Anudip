@@ -1,0 +1,23 @@
+import java.util.Scanner;
+import java.util.TreeMap;
+
+public class TreeMapSearch {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        TreeMap<String, Integer> ageMap = new TreeMap<>();
+
+        // Adding some name-age pairs
+        ageMap.put("Alice", 25);
+        ageMap.put("Bob", 30);
+        ageMap.put("Charlie", 22);
+
+        System.out.print("Enter a name to search : ");
+        String nameToSearch = scanner.nextLine();
+
+        if (ageMap.containsKey(nameToSearch)) {
+            System.out.println("Age of " + nameToSearch + " : " + ageMap.get(nameToSearch));
+        } else {
+            System.out.println("Name not found in the TreeMap.");
+        }
+    }
+}

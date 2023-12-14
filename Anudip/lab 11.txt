@@ -1,0 +1,16 @@
+CREATE TABLE Client_Master (
+    ClientNo VARCHAR(6) PRIMARY KEY,
+    Name VARCHAR(20) NOT NULL,
+    Address1 VARCHAR(30) NOT NULL,
+    Address2 VARCHAR(30) NOT NULL,
+    City VARCHAR(15) NOT NULL,
+    Pincode INT(8) NOT NULL,
+    State VARCHAR(15) NOT NULL,
+    BalDue INT(20) NOT NULL
+);
+
+a) SELECT Name FROM Client_Master;
+b)SELECT Name FROM Client_Master;
+c)SELECT * FROM Client_Master;
+d)DROP TABLE Client_Master;
+
